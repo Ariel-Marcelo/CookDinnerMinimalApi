@@ -1,6 +1,11 @@
 ﻿namespace CookDinnerMinimalApi.Controllers;
 
-public class SearchRecipe
+public static class SearchRecipe
 {
+    public static void MapSearchRecipe(this IEndpointRouteBuilder endpoints)
+    {
+        endpoints.MapGet("/", () => "Hello World!");
+    }
+
     
 }
