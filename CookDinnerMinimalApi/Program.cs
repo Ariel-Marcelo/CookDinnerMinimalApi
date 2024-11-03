@@ -16,7 +16,7 @@ builder.Services.AddSingleton<IRecipeRepository, RecipeRepository>();
 var app = builder.Build();
 
 // Endpoints
-app.MapGet("/environment", () => builder.Environment.EnvironmentName);
+app.MapGet("/environment", () => Environment.GetEnvironmentVariable("USE_KESTREL"));
 app.MapSearchRecipe();
 
 app.Run();
