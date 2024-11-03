@@ -14,8 +14,6 @@ COPY --from=build /out .
 
 ENV USE_KESTREL=true
 
-ENV ASPNETCORE_URLS=http://*:10000
-
 EXPOSE 8081
 
 ENTRYPOINT ["dotnet", "CookDinnerMinimalApi.dll"]
