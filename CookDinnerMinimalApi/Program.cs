@@ -17,7 +17,7 @@ builder.Services.AddSingleton<IRecipeRepository, RecipeRepository>();
 var app = builder.Build();
 
 // Endpoints
-app.MapGet("/environment", () => builder.Environment.EnvironmentName);
+app.MapGet("/environment", () => $" is Productions =  {builder.Environment.IsProduction()}");
 app.MapSearchRecipe();
 
 app.Run();

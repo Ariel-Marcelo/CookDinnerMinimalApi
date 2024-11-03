@@ -12,8 +12,6 @@ WORKDIR /app
 
 COPY --from=build /out .
 
-ENV USE_KESTREL=true
-
 EXPOSE 8081
 
 ENTRYPOINT ["dotnet", "CookDinnerMinimalApi.dll"]
