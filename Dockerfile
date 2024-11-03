@@ -12,6 +12,6 @@ WORKDIR /app
 
 COPY --from=build /out .
 
-EXPOSE 8081
+EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "CookDinnerMinimalApi.dll"]
