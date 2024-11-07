@@ -10,10 +10,10 @@ RUN dotnet publish -c Release -o /out
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
 WORKDIR /app
 
+ENV ASPNETCORE_ENVIRONMENT=Development
+
 COPY --from=build /out .
 
-ENV USE_KESTREL=true
-
-EXPOSE 8081
+EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "CookDinnerMinimalApi.dll"]
