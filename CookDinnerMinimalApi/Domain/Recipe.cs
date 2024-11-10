@@ -1,4 +1,4 @@
-﻿namespace CookDinnerMinimalApi.Models;
+﻿namespace CookDinnerMinimalApi.Domain;
 
 public class Recipe
 {
