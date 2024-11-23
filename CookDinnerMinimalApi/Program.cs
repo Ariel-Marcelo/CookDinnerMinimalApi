@@ -2,15 +2,18 @@ using CookDinnerMinimalApi.Application;
 using CookDinnerMinimalApi.Controllers;
 using CookDinnerMinimalApi.Domain.Ports;
 using CookDinnerMinimalApi.Infrastructure;
-using CookDinnerMinimalApi.Infrastructure.Services;
+using CookDinnerMinimalApi.Infrastructure.DbContext;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Dependency Inyection
+// Dependency Inyection
 builder.Services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("RecipesDatabase"));
 
 builder.Services.AddScoped<ISearchRecipeUseCase, SearchRecipeUseCase>();
+
+builder.Services.AddScoped<IFilterService, FilterService>();
 
 builder.Services.AddScoped<IRecipeRepository, RecipeRepository>();
 

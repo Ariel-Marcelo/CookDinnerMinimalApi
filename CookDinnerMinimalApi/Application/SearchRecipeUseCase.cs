@@ -3,11 +3,11 @@ using CookDinnerMinimalApi.Domain.Ports;
 
 namespace CookDinnerMinimalApi.Application;
 
-public class SearchRecipeUseCase(IRecipeRepository repository, IFilterService<Recipe> filter ) : ISearchRecipeUseCase
+public class SearchRecipeUseCase(IRecipeRepository repository, IFilterService service) : ISearchRecipeUseCase
 {
-    public IEnumerable<Recipe> GetRecipes(FiltersList filters)
+    public IEnumerable<Recipe> GetRecipes(IEnumerable<Filter> filters)
     {
         var recipes = repository.GetRecipes();
-        return filter.ApplyFilters(recipes, filters.GetValue());
+        return service.ApplyFilters(recipes, filters);
     }
 }
