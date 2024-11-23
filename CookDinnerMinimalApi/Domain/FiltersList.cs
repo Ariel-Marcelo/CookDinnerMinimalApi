@@ -1,4 +1,4 @@
-﻿namespace CookDinnerMinimalApi.Domain;
+namespace CookDinnerMinimalApi.Domain;
 
 public class FiltersList(List<Filter> filters)
 {

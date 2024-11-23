@@ -14,7 +14,7 @@ public class Recipe
     
     public EcumCusineType EcumCusineType { get; set; }
     
-    public EnumDifficultyLevel EnumDifficulty { get; set; }
+    public EnumDifficultyLevel Difficulty { get; set; }
     
     public int Likes { get; set; }
 }
