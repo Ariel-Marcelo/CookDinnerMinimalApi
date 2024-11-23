@@ -1,4 +1,6 @@
-﻿namespace CookDinnerMinimalApi.Domain;
+﻿using CookDinnerMinimalApi.Domain.Enums;
+
+namespace CookDinnerMinimalApi.Domain;
 
 public class Recipe
 {
@@ -10,9 +12,9 @@ public class Recipe
     
     public int PreparationTime { get; set; }
     
-    public CusineType CusineType { get; set; }
+    public EcumCusineType EcumCusineType { get; set; }
     
-    public DifficultyLevel Difficulty { get; set; }
+    public EnumDifficultyLevel EnumDifficulty { get; set; }
     
     public int Likes { get; set; }
 }

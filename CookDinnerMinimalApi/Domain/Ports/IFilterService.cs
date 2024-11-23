@@ -2,5 +2,6 @@
 
 public interface IFilterService
 {
-    IEnumerable<Recipe> ApplyFilters(IEnumerable<Recipe> items, IEnumerable<Filter> filters);
+    IEnumerable<T> ApplyFilters<T>(IEnumerable<T> items, IEnumerable<Filter> filters);
+    IEnumerable<Filter> ParseFilters(IQueryCollection query);
 }

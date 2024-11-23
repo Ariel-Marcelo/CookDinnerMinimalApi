@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using CookDinnerMinimalApi.Domain;
+using CookDinnerMinimalApi.Domain.Enums;
 using CookDinnerMinimalApi.Domain.Ports;
 using CookDinnerMinimalApi.Infrastructure.Services;
 
@@ -17,8 +18,8 @@ public class RecipeRepository : IRecipeRepository
             .RuleFor(r => r.Name, f => f.Lorem.Sentence())
             .RuleFor(r => r.Ingredients, f => f.Make(3, () => f.Commerce.ProductName()))
             .RuleFor(r => r.PreparationTime, f => f.Random.Number(1, 100))
-            .RuleFor(r => r.CusineType, f => f.PickRandom<CusineType>())
-            .RuleFor(r => r.Difficulty, f => f.PickRandom<DifficultyLevel>())
+            .RuleFor(r => r.EcumCusineType, f => f.PickRandom<EcumCusineType>())
+            .RuleFor(r => r.EnumDifficulty, f => f.PickRandom<EnumDifficultyLevel>())
             .RuleFor(r => r.Likes, f => f.Random.Number(1, 100));
         
         _context.Recipes.AddRange(faker.Generate(items));

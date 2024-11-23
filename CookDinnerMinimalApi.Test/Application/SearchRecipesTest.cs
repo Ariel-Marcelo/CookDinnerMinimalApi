@@ -1,5 +1,6 @@
 using CookDinnerMinimalApi.Application;
 using CookDinnerMinimalApi.Domain;
+using CookDinnerMinimalApi.Domain.Enums;
 using CookDinnerMinimalApi.Domain.Ports;
 using FluentAssertions;
 using Moq;
@@ -21,7 +22,7 @@ public class SearchRecipesTest
         // And Mock Filter Service
         var mockService = new Mock<IFilterService>();
         mockService
-            .Setup(filterService => filterService.ApplyFilters(sampleRecipes, filtersList.GetValue()))
+            .Setup(filterService => filterService.ApplyFilters(sampleRecipes, filtersList))
             .Returns(expectedResponse);
         // And UseCase instance
         var searchRecipe = new SearchRecipeUseCase(mockRepository.Object, mockService.Object);
@@ -34,33 +35,32 @@ public class SearchRecipesTest
         enumerable.Should().ContainSingle();
         enumerable.First().Name.Should().Be("Spaghetti");
 
-        mockService.Verify(filterService => filterService.ApplyFilters(sampleRecipes, filtersList.GetValue()),
+        mockService.Verify(filterService => filterService.ApplyFilters(sampleRecipes, filtersList),
             Times.Once);
     }
 
     private static List<Recipe> ExpectedResponse()
     {
-        return [new Recipe { Name = "Spaghetti", PreparationTime = 20, Difficulty = DifficultyLevel.Medium }];
+        return [new Recipe { Name = "Spaghetti", PreparationTime = 20, EnumDifficulty = EnumDifficultyLevel.Medium }];
     }
 
     private static IQueryable<Recipe> AndSampleRecipes()
     {
         return new List<Recipe>
         {
-            new Recipe { Name = "Spaghetti", PreparationTime = 20, Difficulty = DifficultyLevel.Medium },
-            new Recipe { Name = "Salad", PreparationTime = 10, Difficulty = DifficultyLevel.Easy },
-            new Recipe { Name = "Curry", PreparationTime = 40, Difficulty = DifficultyLevel.Hard }
+            new Recipe { Name = "Spaghetti", PreparationTime = 20, EnumDifficulty = EnumDifficultyLevel.Medium },
+            new Recipe { Name = "Salad", PreparationTime = 10, EnumDifficulty = EnumDifficultyLevel.Easy },
+            new Recipe { Name = "Curry", PreparationTime = 40, EnumDifficulty = EnumDifficultyLevel.Hard }
         }.AsQueryable();
     }
 
-    private static FiltersList GivenFiltersList()
+    private static IEnumerable<Filter> GivenFiltersList()
     {
         var filters = new List<Filter>
         {
             new Filter { Field = "PreparationTime", Operator = "LessThan", Value = "30" },
             new Filter { Field = "Difficulty", Operator = "Equals", Value = "Medium" }
         };
-        var filtersList = new FiltersList(filters);
-        return filtersList;
+        return filters;
     }
 }
