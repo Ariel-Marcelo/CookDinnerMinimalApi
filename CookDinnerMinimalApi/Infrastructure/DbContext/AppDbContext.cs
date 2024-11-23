@@ -1,9 +1,9 @@
 ﻿using CookDinnerMinimalApi.Domain;
 using Microsoft.EntityFrameworkCore;
 
-namespace CookDinnerMinimalApi.Infrastructure.Services;
+namespace CookDinnerMinimalApi.Infrastructure.DbContext;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+public class AppDbContext(DbContextOptions<AppDbContext> options) : Microsoft.EntityFrameworkCore.DbContext(options)
 {
     public DbSet<Recipe> Recipes { get; set; }
 }

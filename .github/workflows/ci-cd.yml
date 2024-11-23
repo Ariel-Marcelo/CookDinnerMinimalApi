@@ -1,0 +1,36 @@
+﻿name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Run tests
+        run: dotnet test --no-build --verbosity normal
+
+      - name: Build and publish Docker image
+        env:
+            REGISTRY: ghcr.io
+            IMAGE_NAME: Ariel-Marcelo/cookdinnerapi
+        run: |
+            docker build -t $REGISTRY/$IMAGE_NAME:latest .
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login $REGISTRY -u ${{ github.actor }} --password-stdin
+            docker push $REGISTRY/$IMAGE_NAME:latest

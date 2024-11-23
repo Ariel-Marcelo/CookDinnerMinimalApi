@@ -2,7 +2,7 @@
 using CookDinnerMinimalApi.Domain;
 using CookDinnerMinimalApi.Domain.Enums;
 
-namespace CookDinnerMinimalApi.Infrastructure.Services;
+namespace CookDinnerMinimalApi.Infrastructure.DbContext;
 
 public static class DataSeeder
 {
