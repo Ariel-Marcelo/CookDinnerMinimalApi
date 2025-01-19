@@ -10,10 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    env:
-      VITE_WS_SALARY_CALCULATOR: ${{ secrets.VITE_WS_SALARY_CALCULATOR }}
-      VITE_KEY_SALARY_CALCULATOR: ${{ secrets.VITE_KEY_SALARY_CALCULATOR }}
     
     steps:
       - name: Checkout code
